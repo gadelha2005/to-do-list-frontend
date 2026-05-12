@@ -1,73 +1,61 @@
-# React + TypeScript + Vite
+# To-Do List — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Aplicacao em producao:** https://to-do-list-frontend-ecru-seven.vercel.app
 
-Currently, two official plugins are available:
+**Repositorio do backend:** https://github.com/gadelha2005/to-do-list-backend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+Interface web para gerenciamento de tarefas. O usuario se cadastra ou faz login e tem acesso a um painel para criar, visualizar, editar e excluir suas tarefas com filtros por status e prioridade.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologias
 
-## Expanding the ESLint configuration
+- React 18
+- TypeScript
+- Vite
+- React Router DOM v7
+- Axios
+- CSS puro (sem frameworks de estilos)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Funcionalidades
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Tela de login e cadastro com alternancia entre os modos
+- Autenticacao JWT com armazenamento no localStorage
+- Rotas protegidas (redireciona para login se nao autenticado)
+- Listagem de tarefas com busca por texto
+- Filtros por status (Pendente, Em progresso, Concluida) e por prioridade (Alta, Media, Baixa)
+- Cards estatisticos com contagem por categoria
+- Barra de progresso com percentual de conclusao
+- Ordenacao por prazo
+- Modal de criacao e edicao de tarefas
+- Alternancia de status direto pelo checkbox do card
+- Design responsivo com tema escuro
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Como rodar localmente
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+**Pre-requisitos:** Node.js 18+
+
+1. Clone o repositorio
+2. Instale as dependencias:
+
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Crie um arquivo `.env.local` na raiz com:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+VITE_API_URL=http://localhost:8080
+```
+
+4. Inicie o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+A aplicacao abre em `http://localhost:5173`.
+
+## Deploy
+
+Frontend hospedado na Vercel. A variavel `VITE_API_URL` aponta para a API no Railway e e configurada nas variaveis de ambiente da plataforma.

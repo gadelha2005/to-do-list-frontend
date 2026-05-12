@@ -1,12 +1,19 @@
-import axiosInstance from './axiosInstance';
-import type { LoginRequest, RegisterRequest, AuthResponse } from '../types/task';
+import axiosInstance from "./axiosInstance";
+import type {
+  LoginRequest,
+  RegisterRequest,
+  AuthResponse,
+} from "../types/types";
 
 export async function login(data: LoginRequest): Promise<AuthResponse> {
-  const response = await axiosInstance.post<AuthResponse>('/auth/login', data);
+  const response = await axiosInstance.post<AuthResponse>("/auth/login", data);
   return response.data;
 }
 
 export async function register(data: RegisterRequest): Promise<AuthResponse> {
-  const response = await axiosInstance.post<AuthResponse>('/auth/register', data);
+  const response = await axiosInstance.post<AuthResponse>(
+    "/auth/register",
+    data,
+  );
   return response.data;
 }

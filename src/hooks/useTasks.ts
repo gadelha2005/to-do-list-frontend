@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { getTasks, createTask, updateTask, deleteTask } from '../api/taskApi';
-import type { Task, TaskRequest, TaskStatus } from '../types/task';
+import { useState, useEffect } from "react";
+import { getTasks, createTask, updateTask, deleteTask } from "../api/taskApi";
+import type { Task, TaskRequest, TaskStatus } from "../types/types";
 
 export function useTasks() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -18,14 +18,16 @@ export function useTasks() {
         const data = await getTasks();
         if (!cancelled) setTasks(data);
       } catch {
-        if (!cancelled) setError('Erro ao carregar tarefas.');
+        if (!cancelled) setError("Erro ao carregar tarefas.");
       } finally {
         if (!cancelled) setLoading(false);
       }
     }
 
     load();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [trigger]);
 
   const refetch = () => setTrigger((n) => n + 1);
@@ -49,13 +51,22 @@ export function useTasks() {
 
   const toggleStatus = async (task: Task) => {
     const next: TaskStatus =
-      task.status === 'PENDING'
-        ? 'IN_PROGRESS'
-        : task.status === 'IN_PROGRESS'
-        ? 'DONE'
-        : 'PENDING';
+      task.status === "PENDING"
+        ? "IN_PROGRESS"
+        : task.status === "IN_PROGRESS"
+          ? "DONE"
+          : "PENDING";
     return editTask(task.id, { title: task.title, status: next });
   };
 
-  return { tasks, loading, error, addTask, editTask, removeTask, toggleStatus, refetch };
+  return {
+    tasks,
+    loading,
+    error,
+    addTask,
+    editTask,
+    removeTask,
+    toggleStatus,
+    refetch,
+  };
 }

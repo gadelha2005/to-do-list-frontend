@@ -1,9 +1,9 @@
-import axiosInstance from './axiosInstance';
-import type { Task, TaskRequest, TaskStatus } from '../types/task';
+import axiosInstance from "./axiosInstance";
+import type { Task, TaskRequest, TaskStatus } from "../types/types";
 
 export async function getTasks(status?: TaskStatus): Promise<Task[]> {
   const params = status ? { status } : {};
-  const response = await axiosInstance.get<Task[]>('/tasks', { params });
+  const response = await axiosInstance.get<Task[]>("/tasks", { params });
   return response.data;
 }
 
@@ -13,7 +13,7 @@ export async function getTask(id: number): Promise<Task> {
 }
 
 export async function createTask(data: TaskRequest): Promise<Task> {
-  const response = await axiosInstance.post<Task>('/tasks', data);
+  const response = await axiosInstance.post<Task>("/tasks", data);
   return response.data;
 }
 

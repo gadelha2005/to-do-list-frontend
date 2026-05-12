@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { useTasks } from "../../hooks/useTasks";
 import TaskItem from "../../components/TaskItem/TaskItem";
 import TaskForm from "../../components/TaskForm/TaskForm";
-import type { Task, TaskStatus, Priority, TaskRequest } from "../../types/task";
+import type {
+  Task,
+  TaskStatus,
+  Priority,
+  TaskRequest,
+} from "../../types/types";
 import "./TasksPage.css";
 
 type FilterValue = TaskStatus | Priority | "ALL";
@@ -169,7 +174,7 @@ export default function TasksPage() {
         </div>
       </header>
 
-      {/* ── Content ── */}
+     
       <div className="tf-content">
         <div className="page-header">
           <div>
@@ -190,7 +195,7 @@ export default function TasksPage() {
           </button>
         </div>
 
-        {/* ── Stat cards ── */}
+        
         <div className="stats">
           {STAT_FILTERS.map((s) => (
             <div
@@ -205,7 +210,7 @@ export default function TasksPage() {
           ))}
         </div>
 
-        {/* ── Progress bar ── */}
+       
         <div className="progress-row">
           <div className="progress-bar">
             <div className="progress-fill" style={{ width: `${pct}%` }} />
@@ -213,7 +218,7 @@ export default function TasksPage() {
           <span className="progress-pct">{pct}%</span>
         </div>
 
-        {/* ── Controls ── */}
+       
         <div className="controls">
           <div className="search-wrap">
             <svg
@@ -251,7 +256,7 @@ export default function TasksPage() {
           </button>
         </div>
 
-        {/* ── Pills ── */}
+      
         <div className="pills">
           {PILLS.map((p) => (
             <button
@@ -264,7 +269,6 @@ export default function TasksPage() {
           ))}
         </div>
 
-        {/* ── Task list ── */}
         {loading && <p className="tf-state">Carregando...</p>}
         {error && <p className="tf-state tf-state--error">{error}</p>}
 
@@ -304,7 +308,7 @@ export default function TasksPage() {
         )}
       </div>
 
-      {/* ── Create / Edit Modal ── */}
+    
       {modalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
@@ -327,7 +331,7 @@ export default function TasksPage() {
         </div>
       )}
 
-      {/* ── Delete confirm ── */}
+     
       {deleteConfirm !== null && (
         <div className="modal-overlay" onClick={() => setDeleteConfirm(null)}>
           <div className="modal modal--sm" onClick={(e) => e.stopPropagation()}>

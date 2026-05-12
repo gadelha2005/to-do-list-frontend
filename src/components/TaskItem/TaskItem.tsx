@@ -1,4 +1,4 @@
-import type { Task, Priority } from "../../types/task";
+import type { Task, Priority } from "../../types/types";
 import "./TaskItem.css";
 
 interface TaskItemProps {
